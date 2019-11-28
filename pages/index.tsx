@@ -9,7 +9,7 @@ const HomePage: NextPage<{ userAgent: string; users: { id: string }[] }> = ({ us
 
 HomePage.getInitialProps = async context => {
 	const { req } = context;
-	const response = await fetch('http://127.0.0.1:3000/api/users');
+	const response = await fetch('https://next-js-project.roman40a.now.sh/api/users');
 	const users: { id: string }[] = await response.json();
 	const userAgent = req ? req.headers['user-agent'] || '' : navigator.userAgent;
 	return { userAgent, users };
