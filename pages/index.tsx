@@ -12,6 +12,7 @@ HomePage.getInitialProps = async context => {
 	const response = await fetch('https://next-js-project.roman40a.now.sh/api/users');
 	const users: { id: string }[] = await response.json();
 	const userAgent = req ? req.headers['user-agent'] || '' : navigator.userAgent;
+
 	return { userAgent, users };
 };
 
