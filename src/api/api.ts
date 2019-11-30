@@ -14,4 +14,4 @@ class Api {
 	};
 }
 
-export const api = new Api('http://localhost:3000');
+export const api = new Api('https://next-js-project.roman40a.now.sh');
