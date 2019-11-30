@@ -1,7 +1,7 @@
 import React from 'react';
 import { NextPage } from 'next';
-import fetch from 'isomorphic-unfetch';
-import { Home } from '../components/home/home.component';
+import { Home } from '../src/components/home/home.component';
+import { api } from '../src/api/api';
 
 const HomePage: NextPage<{ userAgent: string; users: { id: string }[] }> = ({ userAgent, users }) => (
 	<Home users={users} header={userAgent} />
@@ -9,7 +9,7 @@ const HomePage: NextPage<{ userAgent: string; users: { id: string }[] }> = ({ us
 
 HomePage.getInitialProps = async context => {
 	const { req } = context;
-	const response = await fetch('https://next-js-project.roman40a.now.sh/api/users');
+	const response = await api.get('/api/users');
 	const users: { id: string }[] = await response.json();
 	const userAgent = req ? req.headers['user-agent'] || '' : navigator.userAgent;
 

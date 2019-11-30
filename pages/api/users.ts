@@ -1,4 +1,3 @@
-// Fake users data
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const users = [
@@ -10,6 +9,15 @@ const users = [
 ];
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-	// Get data from your database
-	res.status(200).json(users);
+	const { method, query } = req;
+	switch (method) {
+		case 'GET': {
+			res.status(200).json(users);
+			return;
+		}
+		default: {
+			res.status(404).end([]);
+			return;
+		}
+	}
 };
