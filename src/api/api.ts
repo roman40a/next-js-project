@@ -9,9 +9,9 @@ class Api {
 
 	get = (url: string): Promise<Response> => {
 		return fetch(`${this.root}${url}`, {
-			method: 'POST',
+			method: 'GET',
 		});
 	};
 }
 
-export const api = new Api('https://next-js-project.roman40a.now.sh');
+export const api = new Api('http://localhost:3000');
