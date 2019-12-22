@@ -1,17 +1,21 @@
 import fetch from 'isomorphic-unfetch';
 
-class Api {
+export type TApi = {
+	get(url: string): Promise<Response>;
+};
+
+class Api implements TApi {
 	constructor(root: string) {
 		this.root = root;
 	}
 
-	root: string;
+	private readonly root: string;
 
-	get = (url: string): Promise<Response> => {
+	public get = (url: string): Promise<Response> => {
 		return fetch(`${this.root}${url}`, {
 			method: 'GET',
 		});
 	};
 }
 
-export const api = new Api('https://next-js-project.roman40a.now.sh');
+export const getApi = (root: string): Api => new Api(root);

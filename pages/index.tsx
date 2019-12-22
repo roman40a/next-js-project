@@ -1,19 +1,13 @@
 import React from 'react';
 import { NextPage } from 'next';
-import { Home } from '../src/components/home/home.component';
-import { api } from '../src/api/api';
+import { App, Props } from '../src/components/app/app.component';
 
-const HomePage: NextPage<{ userAgent: string; users: { id: string }[] }> = ({ userAgent, users }) => (
-	<Home users={users} header={userAgent} />
-);
+const HomePage: NextPage<Props> = props => <App {...props} />;
 
 HomePage.getInitialProps = async context => {
-	const { req } = context;
-	const response = await api.get('/api/users');
-	const users: { id: string }[] = await response.json();
-	const userAgent = req ? req.headers['user-agent'] || '' : navigator.userAgent;
+	const root = process.env.root || 'http://localhost:3000';
 
-	return { userAgent, users };
+	return { root };
 };
 
 export default HomePage;

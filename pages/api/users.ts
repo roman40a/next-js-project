@@ -1,12 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const users = [
-	{
-		id: 1,
-	},
-	{ id: 2 },
-	{ id: 3 },
-];
+const users = [{ id: 1 }, { id: 2 }, { id: 3 }];
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
 	const { method, query } = req;
